@@ -1,0 +1,18 @@
+server:
+  port: 9527
+
+image:
+  file:
+    suffixes:
+      - png
+      - jpeg
+
+
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          servlet: debug
+
