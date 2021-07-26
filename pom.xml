@@ -50,12 +50,6 @@
             <version>2.2.0</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.apache.shiro</groupId>-->
-<!--            <artifactId>shiro-spring-boot-web-starter</artifactId>-->
-<!--            <version>1.7.0</version>-->
-<!--        </dependency>-->
-
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>

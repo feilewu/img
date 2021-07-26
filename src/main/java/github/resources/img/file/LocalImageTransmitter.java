@@ -23,7 +23,6 @@ public class LocalImageTransmitter implements ImageTransmitter{
     @Override
     public void writeImage(Image image) throws IOException {
         String parentPath = imageFileProperties.getLocalImageRootPath();
-        System.out.println(parentPath);
         String path = ImageFileUtil.generateChildrenPath() + File.separator + image.getName() + "." +image.getSuffix();
         File file = ImageFileUtil.createFile(parentPath, path);
         if (file == null) {

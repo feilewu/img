@@ -11,8 +11,5 @@ image:
 
 logging:
   level:
-    org:
-      springframework:
-        web:
-          servlet: debug
-
+    org.springframework.web.servlet: debug
+    github.resources: debug
