@@ -1,4 +1,4 @@
-package github.resources.img.auth.core;
+package github.resources.img.auth.core.utils;
 
 import javax.servlet.http.HttpServletRequest;
 

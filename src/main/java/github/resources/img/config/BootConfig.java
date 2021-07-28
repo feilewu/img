@@ -1,6 +1,9 @@
 package github.resources.img.config;
 
 import github.resources.img.auth.core.*;
+import github.resources.img.auth.core.check.JDBCRealm;
+import github.resources.img.auth.core.check.Realm;
+import github.resources.img.auth.core.check.TokenManager;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.LifecycleException;
@@ -50,9 +53,21 @@ public class BootConfig {
     }
 
     @Bean
+    public TokenManager tokenManager(){
+        return new TokenManager();
+    }
+
+    @Bean
+    public Realm realm(){
+        return new JDBCRealm();
+    }
+
+    @Bean
     public WebSecurityManager webSecurityManager(){
         DefaultWebSecurityManager defaultWebSecurityManager=new DefaultWebSecurityManager();
         defaultWebSecurityManager.setDefaultRuleEngine(defaultRuleEngine());
+        defaultWebSecurityManager.setTokenManager(tokenManager());
+        defaultWebSecurityManager.setRealm(realm());
         return defaultWebSecurityManager;
     }
 

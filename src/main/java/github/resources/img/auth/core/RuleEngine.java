@@ -12,7 +12,4 @@ public interface RuleEngine {
         return RuleAction.PASS;
     }
 
-    String createToken();
-
-    boolean checkToken(String token);
 }

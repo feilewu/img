@@ -40,14 +40,4 @@ public class DefaultRuleEngine implements RuleEngine{
         return antPathMatcher.match(pattern,url);
     }
 
-    @Override
-    public String createToken() {
-        return null;
-    }
-
-    @Override
-    public boolean checkToken(String token) {
-        return false;
-    }
-
 }
