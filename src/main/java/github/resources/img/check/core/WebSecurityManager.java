@@ -1,6 +1,6 @@
-package github.resources.img.auth.core;
+package github.resources.img.check.core;
 
-import github.resources.img.auth.core.exception.AuthException;
+import github.resources.img.check.core.exception.AuthException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

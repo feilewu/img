@@ -1,4 +1,4 @@
-package github.resources.img.auth.core;
+package github.resources.img.check.core;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

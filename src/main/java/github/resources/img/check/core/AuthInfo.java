@@ -1,4 +1,4 @@
-package github.resources.img.auth.core.check;
+package github.resources.img.check.core;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,9 +1,10 @@
 package github.resources.img.config;
 
 import github.resources.img.auth.core.*;
-import github.resources.img.auth.core.check.JDBCRealm;
-import github.resources.img.auth.core.check.Realm;
-import github.resources.img.auth.core.check.TokenManager;
+import github.resources.img.check.core.*;
+import github.resources.img.check.core.JDBCRealm;
+import github.resources.img.check.core.Realm;
+import github.resources.img.check.core.TokenManager;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.LifecycleException;
@@ -45,7 +46,7 @@ public class BootConfig {
     @Bean
     public DefaultRuleEngine defaultRuleEngine(){
         DefaultRuleEngine defaultRuleEngine = new DefaultRuleEngine();
-        defaultRuleEngine.addRule("/favicon.ico",RuleAction.PASS);
+        defaultRuleEngine.addRule("/favicon.ico", RuleAction.PASS);
         defaultRuleEngine.addRule("/user/checkLogin",RuleAction.PASS);
         defaultRuleEngine.addRule("/user/login.html",RuleAction.PASS);
         defaultRuleEngine.addRule("/**", RuleAction.INTERCEPT);

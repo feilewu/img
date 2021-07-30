@@ -1,6 +1,4 @@
-package github.resources.img.auth.core.check;
-
-import github.resources.img.auth.core.Account;
+package github.resources.img.check.core;
 
 public class JDBCRealm implements Realm{
     @Override

@@ -1,7 +1,7 @@
-package github.resources.img.auth.core.check;
+package github.resources.img.check.core;
 
 import cn.hutool.json.JSONUtil;
-import github.resources.img.auth.core.exception.AuthException;
+import github.resources.img.check.core.exception.AuthException;
 import lombok.Data;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
@@ -35,7 +35,6 @@ public class TokenManager {
     public String getSignature(String tokenJsonStr){
         return DigestUtils.md5DigestAsHex((tokenJsonStr + salt).getBytes());
     }
-
 
     public void checkToken(String tokenStr) throws AuthException {
         if(!StringUtils.hasText(tokenStr)){

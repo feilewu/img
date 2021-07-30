@@ -1,6 +1,4 @@
-package github.resources.img.auth.core;
-
-import github.resources.img.web.entity.User;
+package github.resources.img.check.core;
 
 import javax.servlet.http.HttpServletRequest;
 

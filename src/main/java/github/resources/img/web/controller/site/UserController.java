@@ -1,8 +1,8 @@
 package github.resources.img.web.controller.site;
 
-import github.resources.img.auth.core.Account;
-import github.resources.img.auth.core.WebSecurityManager;
-import github.resources.img.auth.core.exception.AuthException;
+import github.resources.img.check.core.Account;
+import github.resources.img.check.core.WebSecurityManager;
+import github.resources.img.check.core.exception.AuthException;
 import github.resources.img.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

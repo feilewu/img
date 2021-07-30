@@ -1,4 +1,4 @@
-package github.resources.img.auth.core.exception;
+package github.resources.img.check.core.exception;
 
 public class AuthException extends Exception {
 

@@ -3,6 +3,8 @@ package github.resources.img.file;
 import cn.hutool.core.io.FileUtil;
 import github.resources.img.config.ImageFileProperties;
 import github.resources.img.util.ImageFileUtil;
+import github.resources.img.web.dao.ImgMapMapper;
+import github.resources.img.web.entity.ImageMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,6 +21,9 @@ public class LocalImageTransmitter implements ImageTransmitter{
 
     @Autowired
     private ImageFileProperties imageFileProperties;
+
+    @Autowired
+    private ImgMapMapper imgMapMapper;
 
     @Override
     public void writeImage(Image image) throws IOException {
@@ -37,5 +42,13 @@ public class LocalImageTransmitter implements ImageTransmitter{
         } catch (Exception e) {
             throw new IOException(e);
         }
+        ImageMap imageMap = new ImageMap();
+        imageMap.setImgName(image.getName());
+        imageMap.setSuffix(image.getSuffix());
+        imageMap.setCreateId(Long.parseLong(image.getOwner()));
+        imageMap.setRelativePath("/"+path);
+        imgMapMapper.insert(imageMap);
     }
+
+
 }
