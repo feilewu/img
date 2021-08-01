@@ -18,6 +18,8 @@ image:
     suffixes:
       - png
       - jpeg
+    host:
+      https://img.taole.tech
 
 logging:
   level:

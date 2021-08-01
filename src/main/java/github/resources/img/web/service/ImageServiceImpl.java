@@ -43,6 +43,7 @@ public class ImageServiceImpl implements ImageService{
             localBaseImage.setName(UUID.randomUUID().toString().replace("-",""));
             UserContext userContext = ContextHolder.getInstance().getContext();
             localBaseImage.setOwner(userContext.getOwner());
+            localBaseImage.setIp(userContext.getIp());
             localImageTransmitter.writeImage(localBaseImage);
         } catch (IOException e) {
             throw new UserFriendlyRuntimeException(e);

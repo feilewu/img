@@ -52,6 +52,7 @@ public class LocalImageTransmitter implements ImageTransmitter{
             imageMap.setIp(image.getOwner());
         }
         imageMap.setRelativePath("/"+relativePath);
+        imageMap.setIp(image.getIp());
         imgMapMapper.insert(imageMap);
     }
 

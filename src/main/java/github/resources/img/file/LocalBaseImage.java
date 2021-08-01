@@ -18,6 +18,8 @@ public class LocalBaseImage implements Image{
 
     private String suffix;
 
+    private String ip;
+
     private InputStream inputStream;
 
     @Override
@@ -43,6 +45,11 @@ public class LocalBaseImage implements Image{
     @Override
     public String getSuffix() {
         return suffix;
+    }
+
+    @Override
+    public String getIp() {
+        return ip;
     }
 
     @Override

@@ -5,6 +5,7 @@ import github.resources.img.check.core.config.CheckConfig;
 import github.resources.img.check.core.exception.AuthException;
 import github.resources.img.check.core.token.Token;
 import github.resources.img.check.core.token.TokenManager;
+import github.resources.img.check.core.utils.WebUtil;
 import github.resources.img.util.ResponseUtil;
 import github.resources.img.web.exception.UserFriendlyRuntimeException;
 import lombok.Data;
@@ -46,6 +47,8 @@ public class DefaultWebSecurityManager implements WebSecurityManager{
             throw new UserFriendlyRuntimeException("failed to get userContext");
         }
         userContext.clear();
+        String ipAddress = WebUtil.getIpAddress(request);
+        userContext.setIp(ipAddress);
         if(RuleAction.PASS.equals(ruleEngine.match(request))){
             return true;
         }else {

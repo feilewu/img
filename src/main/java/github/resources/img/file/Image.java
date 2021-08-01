@@ -17,6 +17,7 @@ public interface Image {
 
     String getSuffix();
 
+    String getIp();
     /**
      * 保证每次都是新的输入流，可以重复读取
      * @return

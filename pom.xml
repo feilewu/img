@@ -56,6 +56,11 @@
             <version>5.7.4</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+
         <!-- 引入Swagger3依赖 -->
         <dependency>
             <groupId>io.springfox</groupId>

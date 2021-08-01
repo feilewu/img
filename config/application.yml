@@ -5,8 +5,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/img?useUnicode=true&characterEncoding=utf-8
-    username:
-    password:
+    username: root
+    password: XUpengfei87290135
 
 image:
   file:
@@ -14,5 +14,6 @@ image:
       - png
       - jpeg
     host:
+      https://
 
 
