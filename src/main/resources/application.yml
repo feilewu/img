@@ -1,16 +1,29 @@
 server:
   port: 9527
 
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/img?useUnicode=true&characterEncoding=utf-8
+    username: img
+    password: ETdxTGxhiMfCyAAX
+
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 2MB
+
 image:
   file:
     suffixes:
       - png
       - jpeg
-    host:
-      http://localhost:9527
-
 
 logging:
   level:
     org.springframework.web.servlet: info
-    github.resources: debug
+    github.resources: info
+
+mybatis:
+  type-aliases-package: github.resources.img.dao
+  mapper-locations: classpath:sql/**/*Mapper.xml

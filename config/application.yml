@@ -1,0 +1,18 @@
+server:
+  port: 9527
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/img?useUnicode=true&characterEncoding=utf-8
+    username:
+    password:
+
+image:
+  file:
+    suffixes:
+      - png
+      - jpeg
+    host:
+
+
