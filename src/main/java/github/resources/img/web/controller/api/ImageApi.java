@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("api/img")
 public class ImageApi {
@@ -17,8 +19,8 @@ public class ImageApi {
     private ImageService imageService;
 
     @PostMapping("/upload")
-    public Response upload(@RequestPart MultipartFile multipartFile){
-        return imageService.saveImage(multipartFile);
+    public Response upload(@RequestPart MultipartFile file){
+        return imageService.saveImage(file);
     }
 
 }

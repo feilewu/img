@@ -6,10 +6,11 @@ image:
     suffixes:
       - png
       - jpeg
-
+    host:
+      http://localhost:9527
 
 
 logging:
   level:
-    org.springframework.web.servlet: debug
+    org.springframework.web.servlet: info
     github.resources: debug

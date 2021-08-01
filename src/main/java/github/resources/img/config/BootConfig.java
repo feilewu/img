@@ -44,12 +44,16 @@ public class BootConfig {
     }
 
     @Bean
-    public DefaultRuleEngine defaultRuleEngine(){
+    public RuleEngine defaultRuleEngine(){
         DefaultRuleEngine defaultRuleEngine = new DefaultRuleEngine();
         defaultRuleEngine.addRule("/favicon.ico", RuleAction.PASS);
-        defaultRuleEngine.addRule("/user/checkLogin",RuleAction.PASS);
-        defaultRuleEngine.addRule("/user/login.html",RuleAction.PASS);
+        defaultRuleEngine.addRule("/direct/**",RuleAction.PASS);
+        defaultRuleEngine.addRule("/site/**",RuleAction.PASS);
         defaultRuleEngine.addRule("/api/user",RuleAction.PASS);
+        defaultRuleEngine.addRule("/img/**",RuleAction.PASS);
+        defaultRuleEngine.addRule("/static/**",RuleAction.PASS);
+        defaultRuleEngine.addRule("/",RuleAction.PASS);
+        defaultRuleEngine.addRule("/api/img/upload",RuleAction.PASS);
         defaultRuleEngine.addRule("/**", RuleAction.INTERCEPT);
         defaultRuleEngine.addApiPattern("/api/**");
         return defaultRuleEngine;

@@ -20,18 +20,12 @@ import java.io.InputStream;
 public class LocalImageTransmitter implements ImageTransmitter{
 
     @Autowired
-    private ImageFileProperties imageFileProperties;
-
-    @Autowired
     private ImgMapMapper imgMapMapper;
 
     @Override
     public void writeImage(Image image) throws IOException {
-        String parentPath = imageFileProperties.getLocalImageRootPath();
-        String relativePath = ImageFileUtil.generateChildrenPath();
-
-        String path = relativePath + File.separator + image.getName() + "." +image.getSuffix();
-        File file = ImageFileUtil.createFile(parentPath, path);
+        String path = image.getRelativePath() + File.separator + image.getName() + "." +image.getSuffix();
+        File file = ImageFileUtil.createFile(image.getParentPath(), path);
         if (file == null) {
             throw new IOException();
         }
@@ -44,7 +38,7 @@ public class LocalImageTransmitter implements ImageTransmitter{
         } catch (Exception e) {
             throw new IOException(e);
         }
-        insertToDB(image,relativePath);
+        insertToDB(image,image.getRelativePath());
     }
 
     public void insertToDB(Image image,String relativePath){

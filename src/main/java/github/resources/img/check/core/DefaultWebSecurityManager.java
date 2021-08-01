@@ -1,8 +1,11 @@
 package github.resources.img.check.core;
 
+import cn.hutool.json.JSONUtil;
+import github.resources.img.check.core.config.CheckConfig;
 import github.resources.img.check.core.exception.AuthException;
 import github.resources.img.check.core.token.Token;
 import github.resources.img.check.core.token.TokenManager;
+import github.resources.img.util.ResponseUtil;
 import github.resources.img.web.exception.UserFriendlyRuntimeException;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -50,9 +53,10 @@ public class DefaultWebSecurityManager implements WebSecurityManager{
                 return true;
             }
             if(ruleEngine.isApi(request)){
-                response.getWriter().println("User not verified");
+                response.setHeader("Content-Type","application/json");
+                response.getWriter().print(JSONUtil.toJsonStr(ResponseUtil.fail("Unauthenticated user")));
             }else {
-                response.sendRedirect("/user/login.html");
+                response.sendRedirect(CheckConfig.loginUrl);
             }
             return false;
         }

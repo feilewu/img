@@ -8,6 +8,10 @@ import java.io.InputStream;
 @Data
 public class LocalBaseImage implements Image{
 
+    private String parentPath;
+
+    private String relativePath;
+
     private String name;
 
     private String owner;
@@ -15,6 +19,16 @@ public class LocalBaseImage implements Image{
     private String suffix;
 
     private InputStream inputStream;
+
+    @Override
+    public String getParentPath() {
+        return parentPath;
+    }
+
+    @Override
+    public String getRelativePath() {
+        return relativePath;
+    }
 
     @Override
     public String getOwner() {

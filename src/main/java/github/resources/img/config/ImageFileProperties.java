@@ -23,4 +23,6 @@ public class ImageFileProperties {
 
     private Set<String> suffixes = new HashSet<>(Arrays.asList("jpeg","png","gif","webp"));
 
+    private String host;
+
 }

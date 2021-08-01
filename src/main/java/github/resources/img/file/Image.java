@@ -4,6 +4,9 @@ import java.io.InputStream;
 
 public interface Image {
 
+    String getParentPath();
+
+    String getRelativePath();
 
     String getOwner();
     /**
