@@ -1,10 +1,9 @@
 package github.resources.img.config;
 
-import github.resources.img.auth.core.*;
 import github.resources.img.check.core.*;
-import github.resources.img.check.core.JDBCRealm;
-import github.resources.img.check.core.Realm;
-import github.resources.img.check.core.TokenManager;
+import github.resources.img.check.core.filters.AuthFilter;
+import github.resources.img.check.core.token.DefaultTokenManager;
+import github.resources.img.check.core.token.TokenManager;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.LifecycleException;
@@ -25,7 +24,7 @@ import java.io.IOException;
 public class BootConfig {
 
     @Bean
-    public FilterRegistrationBean<AuthFilter> filterRegistration(){
+    public FilterRegistrationBean<AuthFilter> authFilterRegistration(){
         // 新建过滤器注册类
         FilterRegistrationBean<AuthFilter> registration = new FilterRegistrationBean<>();
         // 添加自定义 过滤器
@@ -36,6 +35,7 @@ public class BootConfig {
         registration.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return registration;
     }
+
     @Bean
     public AuthFilter authFilter(){
         AuthFilter authFilter = new AuthFilter();
@@ -49,13 +49,15 @@ public class BootConfig {
         defaultRuleEngine.addRule("/favicon.ico", RuleAction.PASS);
         defaultRuleEngine.addRule("/user/checkLogin",RuleAction.PASS);
         defaultRuleEngine.addRule("/user/login.html",RuleAction.PASS);
+        defaultRuleEngine.addRule("/api/user",RuleAction.PASS);
         defaultRuleEngine.addRule("/**", RuleAction.INTERCEPT);
+        defaultRuleEngine.addApiPattern("/api/**");
         return defaultRuleEngine;
     }
 
     @Bean
     public TokenManager tokenManager(){
-        return new TokenManager();
+        return new DefaultTokenManager();
     }
 
     @Bean
@@ -66,13 +68,11 @@ public class BootConfig {
     @Bean
     public WebSecurityManager webSecurityManager(){
         DefaultWebSecurityManager defaultWebSecurityManager=new DefaultWebSecurityManager();
-        defaultWebSecurityManager.setDefaultRuleEngine(defaultRuleEngine());
+        defaultWebSecurityManager.setRuleEngine(defaultRuleEngine());
         defaultWebSecurityManager.setTokenManager(tokenManager());
         defaultWebSecurityManager.setRealm(realm());
         return defaultWebSecurityManager;
     }
-
-
 
     /**
      * 关闭tomcat的session管理

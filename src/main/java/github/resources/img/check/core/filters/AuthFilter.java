@@ -1,5 +1,6 @@
-package github.resources.img.check.core;
+package github.resources.img.check.core.filters;
 
+import github.resources.img.check.core.WebSecurityManager;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

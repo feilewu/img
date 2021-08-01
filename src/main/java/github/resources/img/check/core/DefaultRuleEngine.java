@@ -14,8 +14,11 @@ public class DefaultRuleEngine implements RuleEngine{
 
     private final List<Rule> rules;
 
+    private final List<String> apiPatterns;
+
     public DefaultRuleEngine(){
         rules = new ArrayList<>();
+        apiPatterns = new ArrayList<>();
     }
 
     @Override
@@ -33,6 +36,21 @@ public class DefaultRuleEngine implements RuleEngine{
             }
         }
         return RuleAction.PASS;
+    }
+
+    @Override
+    public boolean isApi(HttpServletRequest request) {
+        for(String pattern:apiPatterns){
+            if(isMatch(pattern,request.getRequestURI())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void addApiPattern(String pattern) {
+        apiPatterns.add(pattern);
     }
 
     private boolean isMatch(String pattern,String url){

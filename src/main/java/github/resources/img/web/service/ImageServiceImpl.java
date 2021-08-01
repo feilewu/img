@@ -1,8 +1,11 @@
 package github.resources.img.web.service;
 
+import github.resources.img.check.core.ContextHolder;
+import github.resources.img.check.core.UserContext;
 import github.resources.img.file.LocalBaseImage;
 import github.resources.img.file.LocalImageTransmitter;
 import github.resources.img.util.ResponseUtil;
+import github.resources.img.web.controller.site.UserController;
 import github.resources.img.web.dto.Response;
 import github.resources.img.web.exception.UserFriendlyRuntimeException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,8 @@ public class ImageServiceImpl implements ImageService{
         try {
             localBaseImage.setInputStream(multipartFile.getInputStream());
             localBaseImage.setName(UUID.randomUUID().toString().replace("-",""));
+            UserContext userContext = ContextHolder.getInstance().getContext();
+            localBaseImage.setOwner(userContext.getOwner());
             localImageTransmitter.writeImage(localBaseImage);
         } catch (IOException e) {
             throw new UserFriendlyRuntimeException(e);

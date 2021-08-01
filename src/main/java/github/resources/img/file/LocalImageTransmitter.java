@@ -28,7 +28,9 @@ public class LocalImageTransmitter implements ImageTransmitter{
     @Override
     public void writeImage(Image image) throws IOException {
         String parentPath = imageFileProperties.getLocalImageRootPath();
-        String path = ImageFileUtil.generateChildrenPath() + File.separator + image.getName() + "." +image.getSuffix();
+        String relativePath = ImageFileUtil.generateChildrenPath();
+
+        String path = relativePath + File.separator + image.getName() + "." +image.getSuffix();
         File file = ImageFileUtil.createFile(parentPath, path);
         if (file == null) {
             throw new IOException();
@@ -42,11 +44,20 @@ public class LocalImageTransmitter implements ImageTransmitter{
         } catch (Exception e) {
             throw new IOException(e);
         }
+        insertToDB(image,relativePath);
+    }
+
+    public void insertToDB(Image image,String relativePath){
         ImageMap imageMap = new ImageMap();
         imageMap.setImgName(image.getName());
         imageMap.setSuffix(image.getSuffix());
-        imageMap.setCreateId(Long.parseLong(image.getOwner()));
-        imageMap.setRelativePath("/"+path);
+        try {
+            long id = Long.parseLong(image.getOwner());
+            imageMap.setCreateId(id);
+        }catch (Exception e){
+            imageMap.setIp(image.getOwner());
+        }
+        imageMap.setRelativePath("/"+relativePath);
         imgMapMapper.insert(imageMap);
     }
 

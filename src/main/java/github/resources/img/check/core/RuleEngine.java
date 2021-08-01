@@ -10,4 +10,7 @@ public interface RuleEngine {
         return RuleAction.PASS;
     }
 
+    default boolean isApi(HttpServletRequest request){return false;}
+
+    default void addApiPattern(String pattern){}
 }

@@ -1,4 +1,4 @@
-package github.resources.img.check.core;
+package github.resources.img.check.core.token;
 
 import cn.hutool.json.JSONUtil;
 import github.resources.img.check.core.exception.AuthException;
@@ -10,7 +10,7 @@ import java.util.Base64;
 import java.util.Date;
 
 @Data
-public class TokenManager {
+public class DefaultTokenManager implements TokenManager{
 
     private String salt = "img!";
 
@@ -19,7 +19,7 @@ public class TokenManager {
      */
     private long expireTime= 30 * 60L;
 
-    public TokenManager(){
+    public DefaultTokenManager(){
 
     }
 
@@ -36,7 +36,7 @@ public class TokenManager {
         return DigestUtils.md5DigestAsHex((tokenJsonStr + salt).getBytes());
     }
 
-    public void checkToken(String tokenStr) throws AuthException {
+    public Token checkToken(String tokenStr, Long expireTime) throws AuthException {
         if(!StringUtils.hasText(tokenStr)){
             throw new AuthException("token is empty");
         }
@@ -53,10 +53,10 @@ public class TokenManager {
         Token token = JSONUtil.toBean(tokenJson, Token.class);
         long timestamp = token.getTimestamp();
         long nowTimestamp = new Date().getTime();
-        if((nowTimestamp-timestamp)/1000>expireTime){
+        if((nowTimestamp-timestamp)/1000> (expireTime==null?this.expireTime:expireTime)){
             throw new AuthException("token expired");
         }
+        return token;
     }
-
 
 }

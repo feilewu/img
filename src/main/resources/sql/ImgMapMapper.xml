@@ -39,22 +39,22 @@
         values
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="imgName!=null">
-                imgName,
+                #{imgName},
             </if>
             <if test="relativePath!=null">
-                relativePath,
+                #{relativePath},
             </if>
             <if test="suffix!=null">
-                suffix,
+                #{suffix},
             </if>
             <if test="createId!=null">
-                createId,
+                #{createId},
             </if>
             <if test="createTime!=null">
-                createTime,
+                #{createTime},
             </if>
             <if test="ip!=null">
-                ip,
+                #{ip},
             </if>
         </trim>
     </insert>

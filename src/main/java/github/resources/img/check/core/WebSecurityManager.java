@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public interface WebSecurityManager {
 
-    void login(Account account, HttpServletRequest request,HttpServletResponse response) throws AuthException;
+    AuthInfo login(Account account) throws AuthException;
     /**
      *
      * @param request
@@ -17,4 +17,5 @@ public interface WebSecurityManager {
      */
     boolean authenticate(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
+    String generateToken(String userId);
 }

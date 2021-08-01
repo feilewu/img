@@ -1,4 +1,4 @@
-package github.resources.img.check.core;
+package github.resources.img.check.core.token;
 
 import lombok.Data;
 
