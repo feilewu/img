@@ -70,6 +70,10 @@ public class DefaultWebSecurityManager implements WebSecurityManager{
         return tokenManager.generateToken(userId);
     }
 
+    @Override
+    public String generateToken(String userId, Long expireTime) {
+        return tokenManager.generateToken(userId,expireTime);
+    }
 
     protected boolean checkToken(HttpServletRequest request){
         String tokenStr = getTokenFromHeader(request);

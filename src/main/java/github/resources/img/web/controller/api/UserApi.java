@@ -25,7 +25,7 @@ public class UserApi {
     public Response login(@RequestBody Account account){
         try {
             AuthInfo authInfo = webSecurityManager.login(account);
-            String token = webSecurityManager.generateToken(authInfo.getUserId());
+            String token = webSecurityManager.generateToken(authInfo.getUserId(),7*24*60*60*1000L);
             return ResponseUtil.ok(token);
         } catch (AuthException e) {
             log.info("failed to auth user,user=[{}]",account.getName());

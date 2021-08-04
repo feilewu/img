@@ -18,4 +18,6 @@ public interface WebSecurityManager {
     boolean authenticate(HttpServletRequest request, HttpServletResponse response) throws IOException;
 
     String generateToken(String userId);
+
+    String generateToken(String userId, Long expireTime);
 }
