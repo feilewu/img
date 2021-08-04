@@ -53,9 +53,13 @@
             elem: '#uploadImage'
             ,url: '/api/img/upload' //改成您自己的上传接口
             ,done: function(resp){
-                layer.msg('上传成功');
-                layui.$('#uploadView').removeClass('layui-hide').find('img').attr('src', resp.obj);
-                layui.$('#successUrl').find('p').text(resp.obj);
+                if(resp.success===true){
+                    layer.msg('上传成功');
+                    layui.$('#uploadView').removeClass('layui-hide').find('img').attr('src', resp.obj);
+                    layui.$('#successUrl').find('p').text(resp.obj);
+                }else {
+                    layer.msg(resp.message);
+                }
             }
         });
 

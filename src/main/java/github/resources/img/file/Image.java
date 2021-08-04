@@ -8,7 +8,7 @@ public interface Image {
 
     String getRelativePath();
 
-    String getOwner();
+    String getCreateId();
     /**
      * file name
      * @return

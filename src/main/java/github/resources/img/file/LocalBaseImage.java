@@ -12,9 +12,12 @@ public class LocalBaseImage implements Image{
 
     private String relativePath;
 
+    /**
+     * 图片名字
+     */
     private String name;
 
-    private String owner;
+    private String createId;
 
     private String suffix;
 
@@ -32,9 +35,8 @@ public class LocalBaseImage implements Image{
         return relativePath;
     }
 
-    @Override
-    public String getOwner() {
-        return owner;
+    public String getCreateId() {
+        return createId;
     }
 
     @Override

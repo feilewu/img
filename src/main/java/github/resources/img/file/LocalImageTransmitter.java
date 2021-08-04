@@ -19,9 +19,6 @@ import java.io.InputStream;
 @Component
 public class LocalImageTransmitter implements ImageTransmitter{
 
-    @Autowired
-    private ImgMapMapper imgMapMapper;
-
     @Override
     public void writeImage(Image image) throws IOException {
         String path = image.getRelativePath() + File.separator + image.getName() + "." +image.getSuffix();
@@ -38,23 +35,9 @@ public class LocalImageTransmitter implements ImageTransmitter{
         } catch (Exception e) {
             throw new IOException(e);
         }
-        insertToDB(image,image.getRelativePath());
     }
 
-    public void insertToDB(Image image,String relativePath){
-        ImageMap imageMap = new ImageMap();
-        imageMap.setImgName(image.getName());
-        imageMap.setSuffix(image.getSuffix());
-        try {
-            long id = Long.parseLong(image.getOwner());
-            imageMap.setCreateId(id);
-        }catch (Exception e){
-            imageMap.setIp(image.getOwner());
-        }
-        imageMap.setRelativePath("/"+relativePath);
-        imageMap.setIp(image.getIp());
-        imgMapMapper.insert(imageMap);
-    }
+
 
 
 }

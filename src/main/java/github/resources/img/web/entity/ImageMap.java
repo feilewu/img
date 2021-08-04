@@ -15,7 +15,7 @@ public class ImageMap {
 
     private String suffix;
 
-    private long createId;
+    private Long createId;
 
     private Date createTime;
 

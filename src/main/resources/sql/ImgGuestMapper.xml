@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="github.resources.img.web.dao.ImgGuestMapper">
+
+    <resultMap id="baseResultMap" type="github.resources.img.web.entity.ImgGuest">
+        <result column="id" jdbcType="BIGINT" property="id" javaType="java.lang.Long"/>
+        <result column="guest_id" jdbcType="VARCHAR" property="guestId" javaType="java.lang.String"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" javaType="java.util.Date"/>
+        <result column="count" jdbcType="INTEGER" property="count" javaType="java.lang.Integer"/>
+    </resultMap>
+
+
+    <insert id="insert" parameterType="github.resources.img.web.entity.ImgGuest">
+        INSERT into img_guest
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guestId!=null">
+                guest_id,
+            </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+            <if test="count!=null">
+                count,
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guestId!=null">
+                #{guestId},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="count!=null">
+                #{count},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="selectByGuestId" resultMap="baseResultMap">
+        select * from img_guest where guest_id=#{ip}
+    </select>
+
+    <update id="updateByGuestId" parameterType="github.resources.img.web.entity.ImgGuest">
+        update img_guest
+        set count=#{count}
+        where guest_id = #{guestId}
+    </update>
+
+    <delete id="deleteByGuestRecord">
+        delete from img_guest
+    </delete>
+
+
+</mapper>
