@@ -78,11 +78,13 @@ public class DefaultWebSecurityManager implements WebSecurityManager{
         }
         Token token;
         try {
-            if(ruleEngine.isApi(request)) {
-                token = tokenManager.checkToken(tokenStr, 24*60*60L);
-            }else {
-                token = tokenManager.checkToken(tokenStr, null);
-            }
+            token = tokenManager.checkToken(tokenStr);
+
+//            if(ruleEngine.isApi(request)) {
+//                token = tokenManager.checkToken(tokenStr, 24*60*60L);
+//            }else {
+//                token = tokenManager.checkToken(tokenStr, null);
+//            }
         } catch (AuthException e) {
             log.info("token=[{}]Unverified",tokenStr);
             return false;

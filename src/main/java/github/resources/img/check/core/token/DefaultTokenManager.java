@@ -15,18 +15,27 @@ public class DefaultTokenManager implements TokenManager{
     private String salt = "img!";
 
     /**
-     * 过期时间 单位秒
+     * 过期时间 单位毫秒
      */
-    private long expireTime= 30 * 60L;
+    private long defaultExpireTime = 30 * 60 * 1000L;
 
     public DefaultTokenManager(){
 
     }
 
     public String generateToken( String userId){
+        return generateToken(userId,null);
+    }
+
+    @Override
+    public String generateToken(String userId, Long expireTime) {
+        if(expireTime==null||expireTime<0){
+            expireTime = defaultExpireTime;
+        }
         Token token = new Token();
         token.setUserId(userId);
         token.setTimestamp(new Date().getTime());
+        token.setExpireTime(expireTime);
         String jsonStr = JSONUtil.toJsonStr(token);
         String base64 = Base64.getEncoder().encodeToString(jsonStr.getBytes());
         return base64+"_"+getSignature(base64);
@@ -36,7 +45,7 @@ public class DefaultTokenManager implements TokenManager{
         return DigestUtils.md5DigestAsHex((tokenJsonStr + salt).getBytes());
     }
 
-    public Token checkToken(String tokenStr, Long expireTime) throws AuthException {
+    public Token checkToken(String tokenStr) throws AuthException {
         if(!StringUtils.hasText(tokenStr)){
             throw new AuthException("token is empty");
         }
@@ -53,7 +62,8 @@ public class DefaultTokenManager implements TokenManager{
         Token token = JSONUtil.toBean(tokenJson, Token.class);
         long timestamp = token.getTimestamp();
         long nowTimestamp = new Date().getTime();
-        if((nowTimestamp-timestamp)/1000> (expireTime==null?this.expireTime:expireTime)){
+        long expireTime = token.getExpireTime();
+        if((nowTimestamp-timestamp)> expireTime){
             throw new AuthException("token expired");
         }
         return token;
