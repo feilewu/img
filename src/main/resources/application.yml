@@ -1,5 +1,7 @@
 server:
   port: 9527
+  tomcat:
+    max-http-form-post-size: -1
 
 spring:
   datasource:

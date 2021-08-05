@@ -16,4 +16,7 @@ image:
     host:
       http://localhost:9527
 
-
+logging:
+  level:
+    org.springframework.web.servlet: debug
+    github.resources: debug
