@@ -2,13 +2,10 @@ package github.resources.img.check.core.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 public class WebUtil {
-
-    public static String getToken(HttpServletRequest request){
-        return null;
-    }
 
     public static String getIpAddress(HttpServletRequest request) {
         String Xip = request.getHeader("X-Real-IP");
@@ -42,6 +39,30 @@ public class WebUtil {
             XFor = request.getRemoteAddr();
         }
         return XFor;
+    }
+
+    public static String getToken(HttpServletRequest request){
+        String tokenStr = getTokenFromHeader(request);
+        if(!org.springframework.util.StringUtils.hasText(tokenStr)){
+            tokenStr = getTokenFromCookie(request);
+        }
+        return tokenStr;
+    }
+
+    protected static String getTokenFromCookie(HttpServletRequest request){
+        Cookie[] cookies = request.getCookies();
+        if(cookies!=null){
+            for(Cookie cookie:cookies){
+                if("token".equals(cookie.getName())){
+                    return cookie.getValue();
+                }
+            }
+        }
+        return null;
+    }
+
+    protected static String getTokenFromHeader(HttpServletRequest request){
+        return request.getHeader("token");
     }
 
 }

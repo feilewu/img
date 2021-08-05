@@ -10,9 +10,7 @@ import github.resources.img.util.ResponseUtil;
 import github.resources.img.web.exception.UserFriendlyRuntimeException;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.util.StringUtils;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -76,19 +74,10 @@ public class DefaultWebSecurityManager implements WebSecurityManager{
     }
 
     protected boolean checkToken(HttpServletRequest request){
-        String tokenStr = getTokenFromHeader(request);
-        if(!StringUtils.hasText(tokenStr)){
-            tokenStr = getTokenFromCookie(request);
-        }
+        String tokenStr = WebUtil.getToken(request);
         Token token;
         try {
             token = tokenManager.checkToken(tokenStr);
-
-//            if(ruleEngine.isApi(request)) {
-//                token = tokenManager.checkToken(tokenStr, 24*60*60L);
-//            }else {
-//                token = tokenManager.checkToken(tokenStr, null);
-//            }
         } catch (AuthException e) {
             log.info("token=[{}]Unverified",tokenStr);
             return false;
@@ -98,20 +87,6 @@ public class DefaultWebSecurityManager implements WebSecurityManager{
         return true;
     }
 
-    protected String getTokenFromCookie(HttpServletRequest request){
-        Cookie[] cookies = request.getCookies();
-        if(cookies!=null){
-            for(Cookie cookie:cookies){
-                if("token".equals(cookie.getName())){
-                    return cookie.getValue();
-                }
-            }
-        }
-        return null;
-    }
 
-    protected String getTokenFromHeader(HttpServletRequest request){
-        return request.getHeader("token");
-    }
 
 }
