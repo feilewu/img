@@ -81,18 +81,19 @@ public class ImageServiceImpl implements ImageService{
         imageMap.setIp(image.getIp());
         imageMap.setRelativePath("/"+image.getRelativePath());
         imgMapMapper.insert(imageMap);
-        ImgGuest imgGuestBean = new ImgGuest();
         UserContext context = ContextHolder.getInstance().getContext();
-        imgGuestBean.setGuestId(context.getIp());
-        imgGuestBean.setCreateTime(new Date());
-        imgGuestBean.setCount(1);
-        ImgGuest imgGuest = imgGuestMapper.selectByGuestId(context.getIp());
-        if(imgGuest!=null){
-            imgGuestBean.setCount(imgGuest.getCount()+1);
-            imgGuestMapper.updateByGuestId(imgGuestBean);
-        }else {
-            imgGuestMapper.insert(imgGuestBean);
+        if(!StringUtils.hasText(context.getUserId())){
+            ImgGuest imgGuestBean = new ImgGuest();
+            imgGuestBean.setGuestId(context.getIp());
+            imgGuestBean.setCreateTime(new Date());
+            imgGuestBean.setCount(1);
+            ImgGuest imgGuest = imgGuestMapper.selectByGuestId(context.getIp());
+            if(imgGuest!=null){
+                imgGuestBean.setCount(imgGuest.getCount()+1);
+                imgGuestMapper.updateByGuestId(imgGuestBean);
+            }else {
+                imgGuestMapper.insert(imgGuestBean);
+            }
         }
-
     }
 }
