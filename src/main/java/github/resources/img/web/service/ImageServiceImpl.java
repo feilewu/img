@@ -77,7 +77,9 @@ public class ImageServiceImpl implements ImageService{
         ImageMap imageMap = new ImageMap();
         imageMap.setImgName(image.getName());
         imageMap.setSuffix(image.getSuffix());
-        imageMap.setId(org.apache.commons.lang3.StringUtils.isEmpty(image.getCreateId())?null:Long.parseLong(image.getCreateId()));
+        if(StringUtils.hasText(image.getCreateId())){
+            imageMap.setCreateId(Long.parseLong(image.getCreateId()));
+        }
         imageMap.setIp(image.getIp());
         imageMap.setRelativePath("/"+image.getRelativePath());
         imgMapMapper.insert(imageMap);
