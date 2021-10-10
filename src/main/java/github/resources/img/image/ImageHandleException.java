@@ -1,4 +1,4 @@
-package github.resources.img.file;
+package github.resources.img.image;
 
 import java.io.IOException;
 

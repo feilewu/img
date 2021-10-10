@@ -3,9 +3,9 @@ package github.resources.img.web.service;
 import github.resources.img.check.core.ContextHolder;
 import github.resources.img.check.core.UserContext;
 import github.resources.img.config.ImageFileProperties;
-import github.resources.img.file.Image;
-import github.resources.img.file.LocalBaseImage;
-import github.resources.img.file.LocalImageTransmitter;
+import github.resources.img.image.LocalBaseImage;
+import github.resources.img.image.LocalBaseLocalBaseImageImpl;
+import github.resources.img.image.LocalImageTransmitter;
 import github.resources.img.util.ImageFileUtil;
 import github.resources.img.util.ResponseUtil;
 import github.resources.img.web.dao.ImgGuestMapper;
@@ -47,41 +47,41 @@ public class ImageServiceImpl implements ImageService{
             return ResponseUtil.fail("游客超过一天上传的最大量");
         }
         String contentType = multipartFile.getContentType();
-        LocalBaseImage localBaseImage = new LocalBaseImage();
+        LocalBaseLocalBaseImageImpl localBaseImageImpl = new LocalBaseLocalBaseImageImpl();
         if(StringUtils.hasText(contentType)&&contentType.startsWith("image/")){
             contentType = contentType.substring(contentType.indexOf("/")+1);
         }
-        localBaseImage.setSuffix(contentType);
+        localBaseImageImpl.setSuffix(contentType);
         String parentPath = imageFileProperties.getLocalImageRootPath();
         String relativePath = ImageFileUtil.generateChildrenPath();
-        localBaseImage.setParentPath(parentPath);
-        localBaseImage.setRelativePath(relativePath);
+        localBaseImageImpl.setParentPath(parentPath);
+        localBaseImageImpl.setRelativePath(relativePath);
         try {
-            localBaseImage.setInputStream(multipartFile.getInputStream());
-            localBaseImage.setName(UUID.randomUUID().toString().replace("-",""));
+            localBaseImageImpl.setInputStream(multipartFile.getInputStream());
+            localBaseImageImpl.setName(UUID.randomUUID().toString().replace("-",""));
             UserContext userContext = ContextHolder.getInstance().getContext();
-            localBaseImage.setCreateId(userContext.getUserId());
-            localBaseImage.setIp(userContext.getIp());
-            localImageTransmitter.writeImage(localBaseImage);
-            insertToDB(localBaseImage);
+            localBaseImageImpl.setCreateId(userContext.getUserId());
+            localBaseImageImpl.setIp(userContext.getIp());
+            localImageTransmitter.writeImage(localBaseImageImpl);
+            insertToDB(localBaseImageImpl);
         } catch (IOException e) {
             throw new UserFriendlyRuntimeException(e);
         }finally {
-            localBaseImage.close();
+            localBaseImageImpl.close();
         }
-        String imgUrl = imageFileProperties.getHost()+"/img/"+relativePath+"/"+localBaseImage.getName()+"."+localBaseImage.getSuffix();
+        String imgUrl = imageFileProperties.getHost()+"/img/"+relativePath+"/"+ localBaseImageImpl.getName()+"."+ localBaseImageImpl.getSuffix();
         return ResponseUtil.ok(imgUrl);
     }
 
-    public void insertToDB(Image image){
+    public void insertToDB(LocalBaseImage localBaseImage){
         ImageMap imageMap = new ImageMap();
-        imageMap.setImgName(image.getName());
-        imageMap.setSuffix(image.getSuffix());
-        if(StringUtils.hasText(image.getCreateId())){
-            imageMap.setCreateId(Long.parseLong(image.getCreateId()));
+        imageMap.setImgName(localBaseImage.getName());
+        imageMap.setSuffix(localBaseImage.getSuffix());
+        if(StringUtils.hasText(localBaseImage.getCreateId())){
+            imageMap.setCreateId(Long.parseLong(localBaseImage.getCreateId()));
         }
-        imageMap.setIp(image.getIp());
-        imageMap.setRelativePath("/"+image.getRelativePath());
+        imageMap.setIp(localBaseImage.getIp());
+        imageMap.setRelativePath("/"+ localBaseImage.getRelativePath());
         imgMapMapper.insert(imageMap);
         UserContext context = ContextHolder.getInstance().getContext();
         if(!StringUtils.hasText(context.getUserId())){

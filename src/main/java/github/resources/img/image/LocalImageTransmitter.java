@@ -1,11 +1,7 @@
-package github.resources.img.file;
+package github.resources.img.image;
 
 import cn.hutool.core.io.FileUtil;
-import github.resources.img.config.ImageFileProperties;
 import github.resources.img.util.ImageFileUtil;
-import github.resources.img.web.dao.ImgMapMapper;
-import github.resources.img.web.entity.ImageMap;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedOutputStream;
@@ -20,13 +16,13 @@ import java.io.InputStream;
 public class LocalImageTransmitter implements ImageTransmitter{
 
     @Override
-    public void writeImage(Image image) throws IOException {
-        String path = image.getRelativePath() + File.separator + image.getName() + "." +image.getSuffix();
-        File file = ImageFileUtil.createFile(image.getParentPath(), path);
+    public void writeImage(LocalBaseImage localBaseImage) throws IOException {
+        String path = localBaseImage.getRelativePath() + File.separator + localBaseImage.getName() + "." + localBaseImage.getSuffix();
+        File file = ImageFileUtil.createFile(localBaseImage.getParentPath(), path);
         if (file == null) {
             throw new IOException();
         }
-        try (InputStream inputStream = image.getInputStream();
+        try (InputStream inputStream = localBaseImage.getInputStream();
              BufferedOutputStream outputStream = FileUtil.getOutputStream(file)) {
             byte[] buff = new byte[1024];
             for (int size; (size = inputStream.read(buff)) != -1; ) {

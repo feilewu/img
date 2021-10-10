@@ -1,8 +1,8 @@
-package github.resources.img.file;
+package github.resources.img.image;
 
 import java.io.InputStream;
 
-public interface Image {
+public interface LocalBaseImage {
 
     String getParentPath();
 

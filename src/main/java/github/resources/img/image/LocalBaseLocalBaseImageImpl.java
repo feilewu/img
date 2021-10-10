@@ -1,4 +1,4 @@
-package github.resources.img.file;
+package github.resources.img.image;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 @Data
-public class LocalBaseImage implements Image{
+public class LocalBaseLocalBaseImageImpl implements LocalBaseImage {
 
     private String parentPath;
 
