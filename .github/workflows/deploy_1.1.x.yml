@@ -31,6 +31,11 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
       - name: deploy img-applicaton file
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
