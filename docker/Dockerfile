@@ -1,6 +1,6 @@
 FROM openjdk:8
 
-RUN mkdir -p /opt/img/application
+RUN mkdir -p /opt/img/application/config
 COPY img-application/target/img-application-*.jar /opt/img/application
 COPY docker/start.sh /opt/img/application
 WORKDIR /opt/img/application
