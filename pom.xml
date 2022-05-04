@@ -7,7 +7,7 @@
     <groupId>github.resources</groupId>
     <artifactId>img</artifactId>
     <packaging>pom</packaging>
-    <version>1.1</version>
+    <version>1.1.0</version>
     <modules>
         <module>img-auth</module>
         <module>img-application</module>
@@ -23,7 +23,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <img.version>1.1</img.version>
+        <img.version>1.1.0</img.version>
         <guava.version>30.0-jre</guava.version>
     </properties>
 
