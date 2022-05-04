@@ -8,8 +8,8 @@ if [ -n "$containerId" ]
 fi
 
 docker run -it -d -p 9527:9527 \
-        -v /home/root/.img:/home/root/.img \
-        -v /home/root/.img/config:/opt/img/application/config \
+        -v /root/.img:/root/.img \
+        -v /root/.img/config:/opt/img/application/config \
         --name img-serivce \
         pfxuresources/img
 

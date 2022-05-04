@@ -18,7 +18,7 @@ public class RootSiteController {
 
     }
 
-    @GetMapping("index.html")
+    @GetMapping({"index.html","","/"})
     public String index(HttpServletRequest req, HttpServletResponse resp){
         return "index";
     }
