@@ -42,7 +42,7 @@ jobs:
 #          remote_path: '/root/workspace/img'
 
   build-push-deploy:
-    name: Push Docker image to Docker Hub
+    name: Build, push, deploy docker image
     runs-on: ubuntu-latest
     steps:
 
