@@ -42,9 +42,9 @@ public class ImgController {
         if (!suffixs.contains(suffix)){
             WebUtil.replyJson(response, ResponseUtil.fail("unsupported uri, the suffix "+suffix+" is not supported"));
         }
-
-        System.out.println(uri);
-        response.getWriter().print("hello");
+        String fileName = uri.substring(uri.lastIndexOf("/")+1);
+        final ImageBo imageBo = imgService.readImg(fileName);
+        reply(imageBo,response);
     }
 
     private void reply(ImageBo imageBo, HttpServletResponse response){

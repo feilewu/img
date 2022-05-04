@@ -46,8 +46,9 @@ public class ImgServiceImpl implements ImgService {
             throw new ReadRuntimeException("can not find img in database, uri: "+fileName);
         }
         String localPath = ImageServiceHolder.getImageServiceConf().getString(LOCAL_STORAGE_PATH);
+        String prefix = imageEntity.getPrefixPath().replaceFirst("/","");
         String uri = localPath
-                + File.separator + imageEntity.getPrefixPath()+File.separator+fileName;
+                + File.separator + prefix + File.separator+fileName;
         final ImageBo imageBo = storageManger.read(uri, StorageType.LOCAL);
         if (ObjectUtils.isEmpty(imageEntity)){
             throw new ReadRuntimeException("can not find img in disk, uri: "+fileName);
