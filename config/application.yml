@@ -4,17 +4,18 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://10.10.10.15:3306/img?useUnicode=true&characterEncoding=utf-8
-    username: xu
-    password: xupengfei
+    url: jdbc:mysql://127.0.0.1:3306/img?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: XUpengfei87290135
 
 image:
-  file:
-    suffixes:
+  service:
+    supportedSuffixes:
       - png
       - jpeg
-    host:
-      http://localhost:9527
+    EnableVerification: true
+    deleteLocalStoragePathWhenStart: false
+    host: http://localhost:9527
 
 logging:
   level:

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="github.resources.img.application.dao.UserMapper">
+
+    <resultMap id="baseResultMap" type="github.resources.img.application.entity.UserEntity">
+        <result column="id" jdbcType="BIGINT" property="id" javaType="java.lang.Long"/>
+        <result column="name" jdbcType="VARCHAR" property="name" javaType="java.lang.String"/>
+        <result column="password" jdbcType="VARCHAR" property="password" javaType="java.lang.String"/>
+        <result column="create_id" jdbcType="BIGINT" property="createId" javaType="java.lang.Long"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" javaType="java.util.Date"/>
+        <result column="modify_id" jdbcType="BIGINT" property="modifyId" javaType="java.lang.Long"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" javaType="java.util.Date"/>
+    </resultMap>
+
+
+    <select id="getUserById" resultMap="baseResultMap">
+        select * from img_user where id=#{id}
+    </select>
+
+</mapper>

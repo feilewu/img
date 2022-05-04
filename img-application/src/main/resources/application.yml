@@ -1,0 +1,25 @@
+server:
+  port: 9527
+  tomcat:
+    max-http-form-post-size: -1
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/img?useUnicode=true&characterEncoding=utf-8
+    username: img
+    password: ETdxTGxhiMfCyAAX
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+logging:
+  level:
+    org.springframework.web.servlet: info
+    github.resources: info
+
+mybatis:
+  type-aliases-package: github.resources.img.*.entity
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
