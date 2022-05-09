@@ -12,4 +12,7 @@ public interface UserMapper {
     UserEntity getUserByName(@Param("name") String name);
 
 
+    int insertUser(UserEntity userEntity);
+
+
 }
