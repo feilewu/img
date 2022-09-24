@@ -7,6 +7,8 @@ if [ -n "$containerId" ]
       docker rm "$containerId"
 fi
 
+docker rmi `docker images | grep none | awk '{print $3}'`
+
 docker run -it -d -p 9527:9527 \
         -v /root/.img:/root/.img \
         -v /root/.img/config:/opt/img/application/config \

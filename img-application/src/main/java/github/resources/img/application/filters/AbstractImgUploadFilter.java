@@ -3,7 +3,6 @@ package github.resources.img.application.filters;
 import github.resources.img.application.config.ContextHolder;
 import github.resources.img.application.config.ImageServiceConf;
 import github.resources.img.application.config.ImageServiceHolder;
-import github.resources.img.application.config.UserContext;
 import github.resources.img.application.utils.ResponseUtil;
 import github.resources.img.application.utils.WebUtil;
 import github.resources.img.auth.SecurityManager;

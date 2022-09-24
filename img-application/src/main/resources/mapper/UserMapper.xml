@@ -19,4 +19,62 @@
         select * from img_user where id=#{id}
     </select>
 
+    <select id="getUserByName" resultMap="baseResultMap">
+        select * from img_user where name=#{name}
+    </select>
+
+    <insert id="insertUser" parameterType="github.resources.img.application.entity.UserEntity">
+        INSERT into img_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                id,
+            </if>
+            <if test="name!=null">
+                name,
+            </if>
+            <if test="password!=null">
+                password,
+            </if>
+            <if test="createId!=null">
+                create_id,
+            </if>
+            <if test="createTime!=null">
+                create_time,
+            </if>
+            <if test="modifyId!=null">
+                modify_id,
+            </if>
+            <if test="modifyTime!=null">
+                modify_time,
+            </if>
+
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id!=null">
+                #{id},
+            </if>
+            <if test="name!=null">
+                #{name},
+            </if>
+            <if test="password!=null">
+                #{password},
+            </if>
+            <if test="createId!=null">
+                #{createId},
+            </if>
+            <if test="createTime!=null">
+                #{createTime},
+            </if>
+            <if test="modifyId!=null">
+                #{modifyId},
+            </if>
+            <if test="modifyTime!=null">
+                #{modifyTime},
+            </if>
+        </trim>
+
+    </insert>
+
+
 </mapper>

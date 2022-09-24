@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:8u201-jdk-alpine
 
 RUN mkdir -p /opt/img/application/config
 COPY img-application/target/img-application-*.jar /opt/img/application

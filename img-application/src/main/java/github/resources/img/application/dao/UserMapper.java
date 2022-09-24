@@ -9,4 +9,10 @@ public interface UserMapper {
 
     UserEntity getUserById(@Param("id") Long id);
 
+    UserEntity getUserByName(@Param("name") String name);
+
+
+    int insertUser(UserEntity userEntity);
+
+
 }

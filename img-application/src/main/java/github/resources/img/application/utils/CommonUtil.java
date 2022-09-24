@@ -2,6 +2,8 @@ package github.resources.img.application.utils;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.ObjectUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 
@@ -26,5 +28,13 @@ public class CommonUtil {
         Date date = DateUtil.date();
         return DateUtil.format(date,PURE_DATE_PATTERN);
     }
+
+    public static boolean isEmpty(Object o){
+        if (o instanceof String){
+            return StringUtils.isEmpty((String)o);
+        }
+        return ObjectUtil.isEmpty(o);
+    }
+
 
 }
