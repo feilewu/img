@@ -1,10 +1,5 @@
 package github.resources.img.application.appconfig;
 
-import github.resources.img.auth.SecurityManager;
-import github.resources.img.auth.SimpleSecurityManager;
-import github.resources.img.auth.realm.Realm;
-import github.resources.img.auth.token.DefaultTokenManager;
-import github.resources.img.auth.token.TokenManager;
 import github.resources.img.manager.DefaultStorageManger;
 import github.resources.img.manager.StorageManger;
 import github.resources.img.manager.dao.ImgMapper;
@@ -37,20 +32,7 @@ public class BootConfig {
     public WebServerFactoryCustomizer<TomcatServletWebServerFactory> sessionManagerCustomizer() {
         return server -> server.addContextCustomizers(context -> context.setManager(new SimpleSessionManager()));
     }
-
-    @Bean
-    public TokenManager tokenManager(){
-        return new DefaultTokenManager();
-    }
-
-    @Bean
-    public SecurityManager securityManager(Realm realm){
-        SimpleSecurityManager securityManager = new SimpleSecurityManager();
-        securityManager.setTokenManager(tokenManager());
-        securityManager.setRealm(realm);
-        return securityManager;
-    }
-
+    
     @Bean
     public StorageManger storageManger(){
         return new DefaultStorageManger(imgMapper);

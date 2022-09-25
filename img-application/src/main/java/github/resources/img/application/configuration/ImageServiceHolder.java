@@ -1,6 +1,5 @@
 package github.resources.img.application.configuration;
 
-import github.resources.img.auth.SecurityManager;
 import lombok.Getter;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.BeansException;
@@ -16,14 +15,8 @@ public class ImageServiceHolder implements ApplicationContextAware {
 
     private static ImageServiceConf conf;
 
-    private static SecurityManager manager;
-
     public static ImageServiceConf getImageServiceConf() {
         return conf;
-    }
-
-    public static SecurityManager getSecurityManager(){
-        return manager;
     }
 
 
@@ -35,10 +28,10 @@ public class ImageServiceHolder implements ApplicationContextAware {
             throw new IllegalStateException("can not get bean of ImageServiceConf");
         }
         conf = imageServiceConf;
-        final SecurityManager securityManager = applicationContext.getBean(SecurityManager.class);
-        if (ObjectUtils.isEmpty(securityManager)){
-            throw new IllegalStateException("can not get bean of SecurityManager");
-        }
-        manager = securityManager;
+//        final SecurityManager securityManager = applicationContext.getBean(SecurityManager.class);
+//        if (ObjectUtils.isEmpty(securityManager)){
+//            throw new IllegalStateException("can not get bean of SecurityManager");
+//        }
+//        manager = securityManager;
     }
 }
