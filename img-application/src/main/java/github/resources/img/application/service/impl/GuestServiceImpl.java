@@ -1,7 +1,7 @@
 package github.resources.img.application.service.impl;
 
-import github.resources.img.application.dao.ImgGuestMapper;
-import github.resources.img.application.entity.GuestEntity;
+import github.resources.img.application.web.dao.ImgGuestMapper;
+import github.resources.img.application.model.entity.GuestEntity;
 import github.resources.img.application.service.GuestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

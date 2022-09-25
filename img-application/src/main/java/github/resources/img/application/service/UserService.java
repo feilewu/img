@@ -1,6 +1,6 @@
 package github.resources.img.application.service;
 
-import github.resources.img.application.bo.UserBo;
+import github.resources.img.application.model.bo.UserBo;
 import github.resources.img.auth.AuthException;
 
 public interface UserService {

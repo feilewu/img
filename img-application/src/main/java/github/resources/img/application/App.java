@@ -1,7 +1,7 @@
 package github.resources.img.application;
 
 import cn.hutool.core.io.FileUtil;
-import github.resources.img.application.config.ImageServiceConf;
+import github.resources.img.application.configuration.ImageServiceConf;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +13,11 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import static github.resources.img.application.config.ImageServiceConf.DELETE_LOCAL_STORAGE_PATH_WHEN_START;
-import static github.resources.img.application.config.ImageServiceConf.LOCAL_STORAGE_PATH;
+import static github.resources.img.application.configuration.ImageServiceConf.DELETE_LOCAL_STORAGE_PATH_WHEN_START;
+import static github.resources.img.application.configuration.ImageServiceConf.LOCAL_STORAGE_PATH;
 
-@SpringBootApplication(scanBasePackages = {"github.resources.img.application"})
-@MapperScan("github.resources.img.*.dao")
+@SpringBootApplication(scanBasePackages = {"github.resources.img"})
+@MapperScan(basePackages = {"github.resources.img.application.web.dao","github.resources.img.*.dao"})
 @EnableScheduling
 @EnableWebMvc
 @Slf4j

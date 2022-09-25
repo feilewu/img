@@ -1,6 +1,6 @@
 package github.resources.img.application.web.advice;
 
-import github.resources.img.application.dto.Response;
+import github.resources.img.application.model.dto.Response;
 import github.resources.img.application.utils.ResponseUtil;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

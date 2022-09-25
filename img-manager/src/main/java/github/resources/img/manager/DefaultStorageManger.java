@@ -2,7 +2,6 @@ package github.resources.img.manager;
 
 import github.resources.img.manager.bo.ImageBo;
 import github.resources.img.manager.dao.ImgMapper;
-import github.resources.img.manager.storage.LocalStorage;
 import github.resources.img.manager.storage.Storage;
 import github.resources.img.manager.storage.StorageFactory;
 import github.resources.img.manager.storage.StorageType;

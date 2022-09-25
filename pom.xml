@@ -7,11 +7,13 @@
     <groupId>github.resources</groupId>
     <artifactId>img</artifactId>
     <packaging>pom</packaging>
-    <version>1.1.0</version>
+    <version>2.1.0</version>
     <modules>
         <module>img-auth</module>
         <module>img-application</module>
         <module>img-manager</module>
+        <module>img-storage</module>
+        <module>img-core</module>
     </modules>
 
 <!--    <parent>-->
@@ -23,7 +25,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <img.version>1.1.0</img.version>
+<!--        <img.version>2.1.0</img.version>-->
         <guava.version>30.0-jre</guava.version>
     </properties>
 
@@ -64,6 +66,12 @@
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis</artifactId>
                 <version>3.5.7</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus</artifactId>
+                <version>3.5.2</version>
             </dependency>
 
             <dependency>

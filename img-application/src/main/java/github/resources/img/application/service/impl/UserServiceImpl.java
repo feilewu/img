@@ -1,8 +1,8 @@
 package github.resources.img.application.service.impl;
 
-import github.resources.img.application.bo.UserBo;
-import github.resources.img.application.dao.UserMapper;
-import github.resources.img.application.entity.UserEntity;
+import github.resources.img.application.model.bo.UserBo;
+import github.resources.img.application.web.dao.UserMapper;
+import github.resources.img.application.model.entity.UserEntity;
 import github.resources.img.application.service.UserService;
 import github.resources.img.auth.AuthException;
 import org.apache.commons.lang3.StringUtils;

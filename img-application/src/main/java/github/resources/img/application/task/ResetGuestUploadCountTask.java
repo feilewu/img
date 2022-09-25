@@ -1,6 +1,6 @@
 package github.resources.img.application.task;
 
-import github.resources.img.application.dao.ImgGuestMapper;
+import github.resources.img.application.web.dao.ImgGuestMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

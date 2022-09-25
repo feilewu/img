@@ -1,7 +1,7 @@
 package github.resources.img.application.utils;
 
 
-import github.resources.img.application.dto.Response;
+import github.resources.img.application.model.dto.Response;
 
 public class ResponseUtil {
 

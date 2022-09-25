@@ -1,7 +1,7 @@
 package github.resources.img.application.web.api;
 
-import github.resources.img.application.config.ImageServiceConf;
-import github.resources.img.application.dto.Response;
+import github.resources.img.application.configuration.ImageServiceConf;
+import github.resources.img.application.model.dto.Response;
 import github.resources.img.application.service.ImgService;
 import github.resources.img.application.utils.BeanConventUtil;
 import github.resources.img.application.utils.ImageUtil;

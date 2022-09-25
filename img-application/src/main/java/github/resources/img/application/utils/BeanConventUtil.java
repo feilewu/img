@@ -1,6 +1,6 @@
 package github.resources.img.application.utils;
 
-import github.resources.img.application.config.ImageServiceHolder;
+import github.resources.img.application.configuration.ImageServiceHolder;
 import github.resources.img.manager.bo.ImageBo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
-import static github.resources.img.application.config.ImageServiceConf.LOCAL_STORAGE_PATH;
+import static github.resources.img.application.configuration.ImageServiceConf.LOCAL_STORAGE_PATH;
 
 public class BeanConventUtil {
 

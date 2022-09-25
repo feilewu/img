@@ -1,10 +1,10 @@
 package github.resources.img.application.utils;
 
-import github.resources.img.application.config.ImageServiceConf;
+import github.resources.img.application.configuration.ImageServiceConf;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import static github.resources.img.application.config.ImageServiceConf.SUPPORTED_SUFFIX;
+import static github.resources.img.application.configuration.ImageServiceConf.SUPPORTED_SUFFIX;
 
 public class ImageUtil {
 

@@ -1,6 +1,6 @@
 package github.resources.img.application.service;
 
-import github.resources.img.application.dto.Response;
+import github.resources.img.application.model.dto.Response;
 import github.resources.img.manager.bo.ImageBo;
 
 public interface ImgService {

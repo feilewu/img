@@ -1,6 +1,6 @@
 package github.resources.img.application.web;
 
-import github.resources.img.application.config.ImageServiceHolder;
+import github.resources.img.application.configuration.ImageServiceHolder;
 import github.resources.img.application.service.ImgService;
 import github.resources.img.application.utils.ResponseUtil;
 import github.resources.img.application.utils.WebUtil;
@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static github.resources.img.application.config.ImageServiceConf.SUPPORTED_SUFFIX;
+import static github.resources.img.application.configuration.ImageServiceConf.SUPPORTED_SUFFIX;
 
 @Controller
 @RequestMapping("/img")

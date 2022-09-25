@@ -1,6 +1,6 @@
 package github.resources.img.application.utils;
 
-import github.resources.img.application.dto.Response;
+import github.resources.img.application.model.dto.Response;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.servlet.http.Cookie;

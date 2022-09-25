@@ -1,6 +1,6 @@
 package github.resources.img.application.appconfig;
 
-import github.resources.img.application.interceptors.UploadInterceptor;
+import github.resources.img.application.web.interceptors.UploadInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

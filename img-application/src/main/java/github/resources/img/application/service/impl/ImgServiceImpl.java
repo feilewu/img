@@ -1,9 +1,10 @@
 package github.resources.img.application.service.impl;
 
-import github.resources.img.application.config.ImageServiceHolder;
-import github.resources.img.application.dto.Response;
+import github.resources.img.application.configuration.ImageServiceHolder;
+import github.resources.img.application.model.dto.Response;
 import github.resources.img.application.service.ImgService;
 import github.resources.img.application.utils.ResponseUtil;
+import github.resources.img.manager.ImageManager;
 import github.resources.img.manager.StorageManger;
 import github.resources.img.manager.bo.ImageBo;
 import github.resources.img.manager.dao.ImgMapper;
@@ -14,10 +15,11 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.io.File;
 
-import static github.resources.img.application.config.ImageServiceConf.HOST;
-import static github.resources.img.application.config.ImageServiceConf.LOCAL_STORAGE_PATH;
+import static github.resources.img.application.configuration.ImageServiceConf.HOST;
+import static github.resources.img.application.configuration.ImageServiceConf.LOCAL_STORAGE_PATH;
 
 @Service
 public class ImgServiceImpl implements ImgService {
@@ -27,6 +29,9 @@ public class ImgServiceImpl implements ImgService {
 
     @Autowired
     private ImgMapper imgMapper;
+
+    @Resource(name = "localImageManager")
+    private ImageManager imageManager;
 
     @Override
     public Response upload(ImageBo imageBo) {

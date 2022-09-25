@@ -1,7 +1,7 @@
 package github.resources.img.application.appconfig;
 
-import github.resources.img.application.filters.ApiImgUploadFilter;
-import github.resources.img.application.filters.SiteImgUploadFilter;
+import github.resources.img.application.web.filters.ApiImgUploadFilter;
+import github.resources.img.application.web.filters.SiteImgUploadFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="github.resources.img.application.dao.ImgGuestMapper">
+<mapper namespace="github.resources.img.application.web.dao.ImgGuestMapper">
 
-    <resultMap id="baseResultMap" type="github.resources.img.application.entity.GuestEntity">
+    <resultMap id="baseResultMap" type="github.resources.img.application.model.entity.GuestEntity">
         <result column="id" jdbcType="BIGINT" property="id" javaType="java.lang.Long"/>
         <result column="guest_id" jdbcType="VARCHAR" property="guestId" javaType="java.lang.String"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" javaType="java.util.Date"/>
@@ -12,7 +12,7 @@
     </resultMap>
 
 
-    <insert id="insert" parameterType="github.resources.img.application.entity.GuestEntity">
+    <insert id="insert" parameterType="github.resources.img.application.model.entity.GuestEntity">
         INSERT into img_guest
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="guestId!=null">
@@ -43,7 +43,7 @@
         select * from img_guest where guest_id=#{ip}
     </select>
 
-    <update id="updateByGuestId" parameterType="github.resources.img.application.entity.GuestEntity">
+    <update id="updateByGuestId" parameterType="github.resources.img.application.model.entity.GuestEntity">
         update img_guest
         set count=#{count}
         where guest_id = #{guestId}
