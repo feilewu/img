@@ -4,6 +4,7 @@ import github.resources.img.application.configuration.ImageServiceHolder;
 import github.resources.img.application.model.dto.Response;
 import github.resources.img.application.service.ImgService;
 import github.resources.img.application.utils.ResponseUtil;
+import github.resources.img.core.configuration.ImageServiceConf;
 import github.resources.img.manager.ImageManager;
 import github.resources.img.manager.StorageManger;
 import github.resources.img.manager.bo.ImageBo;
@@ -18,8 +19,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.File;
 
-import static github.resources.img.application.configuration.ImageServiceConf.HOST;
-import static github.resources.img.application.configuration.ImageServiceConf.LOCAL_STORAGE_PATH;
+import static github.resources.img.application.configuration.DefaultImageServiceConf.HOST;
+import static github.resources.img.application.configuration.DefaultImageServiceConf.LOCAL_STORAGE_PATH;
 
 @Service
 public class ImgServiceImpl implements ImgService {
@@ -33,6 +34,9 @@ public class ImgServiceImpl implements ImgService {
     @Resource(name = "localImageManager")
     private ImageManager imageManager;
 
+    @Autowired
+    private ImageServiceConf imageServiceConf;
+
     @Override
     public Response upload(ImageBo imageBo) {
         storageManger.write(imageBo);
@@ -43,6 +47,18 @@ public class ImgServiceImpl implements ImgService {
     @Override
     public ImageBo readImg(String fileName) {
         return readRawImg(fileName);
+    }
+
+    @Override
+    public Response saveImage(ImageBo imageBo) {
+        imageManager.save(imageBo);
+        String host = ImageServiceHolder.getImageServiceConf().getString(HOST);
+        return ResponseUtil.ok(host+"/img/"+imageBo.getName()+"."+imageBo.getSuffix());
+    }
+
+    @Override
+    public ImageBo getImg(String fileName) {
+        return imageManager.get(fileName);
     }
 
     private ImageBo readRawImg(String fileName){

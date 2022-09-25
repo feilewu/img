@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
-import static github.resources.img.application.configuration.ImageServiceConf.LOCAL_STORAGE_PATH;
+import static github.resources.img.application.configuration.DefaultImageServiceConf.LOCAL_STORAGE_PATH;
 
 public class BeanConventUtil {
 
@@ -45,6 +45,7 @@ public class BeanConventUtil {
             String localPath = ImageServiceHolder.getImageServiceConf().getString(LOCAL_STORAGE_PATH);
             imageBo.setLocalPath(localPath);
             String prefix = CommonUtil.generatePrefixPath();
+            imageBo.setPrefix(prefix);
             imageBo.setUri(localPath+File.separator+prefix+File.separator+fileName+"."+suffix);
             return imageBo;
         } catch (IOException e) {

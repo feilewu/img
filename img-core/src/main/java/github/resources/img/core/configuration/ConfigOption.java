@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package github.resources.img.application.configuration;
+package github.resources.img.core.configuration;
 
 import java.util.Objects;
 import java.util.function.Function;

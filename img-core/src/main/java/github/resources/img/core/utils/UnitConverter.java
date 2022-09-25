@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package github.resources.img.application.utils;
+package github.resources.img.core.utils;
 
 
 import com.google.common.collect.ImmutableMap;

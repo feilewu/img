@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static github.resources.img.application.configuration.ImageServiceConf.SUPPORTED_SUFFIX;
+import static github.resources.img.application.configuration.DefaultImageServiceConf.SUPPORTED_SUFFIX;
 
 @Controller
 @RequestMapping("/img")
@@ -29,7 +29,8 @@ public class ImgController {
 
     @GetMapping("/{fileName}")
     public void file(@PathVariable("fileName") String fileName, HttpServletRequest request, HttpServletResponse response){
-        final ImageBo imageBo = imgService.readImg(fileName);
+        final ImageBo imageBo = imgService.getImg(fileName);
+        //ImageBo imageBo = imgService.readImg(fileName);
         reply(imageBo,response);
     }
 

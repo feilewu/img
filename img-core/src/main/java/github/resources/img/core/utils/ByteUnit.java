@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package github.resources.img.application.utils;
+package github.resources.img.core.utils;
 
 // copy from org.apache.spark.network.util.ByteUnit
 public enum ByteUnit {

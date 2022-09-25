@@ -9,4 +9,8 @@ public interface ImgService {
 
     ImageBo readImg(String fileName);
 
+    Response saveImage(ImageBo imageBo);
+
+    ImageBo getImg(String fileName);
+
 }

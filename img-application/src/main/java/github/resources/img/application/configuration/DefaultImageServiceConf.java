@@ -1,6 +1,9 @@
 package github.resources.img.application.configuration;
 
 import github.resources.img.application.properties.ImageServiceProperties;
+import github.resources.img.core.configuration.BaseConf;
+import github.resources.img.core.configuration.ConfigOption;
+import github.resources.img.core.configuration.ConfigOptions;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
@@ -13,7 +16,7 @@ import java.util.Properties;
 
 @Configuration
 @Component
-public class ImageServiceConf extends BaseConf implements InitializingBean {
+public class DefaultImageServiceConf extends BaseConf implements InitializingBean {
 
     @Autowired
     private ImageServiceProperties imageServiceProperties;

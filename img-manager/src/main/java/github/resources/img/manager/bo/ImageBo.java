@@ -8,6 +8,8 @@ public class ImageBo {
 
     private String uri;
 
+    private String prefix;
+
     private String name;
 
     private byte[] content;
@@ -63,5 +65,13 @@ public class ImageBo {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+
+    public String getPrefix() {
+        return prefix;
     }
 }

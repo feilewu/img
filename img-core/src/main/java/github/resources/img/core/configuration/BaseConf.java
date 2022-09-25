@@ -1,4 +1,4 @@
-package github.resources.img.application.configuration;
+package github.resources.img.core.configuration;
 
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;

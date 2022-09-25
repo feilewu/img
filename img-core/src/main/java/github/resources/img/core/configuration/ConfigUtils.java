@@ -16,10 +16,10 @@
  * specific language governing permissions and limitations under the License.
  */
 
-package github.resources.img.application.configuration;
+package github.resources.img.core.configuration;
 
 
-import github.resources.img.application.utils.UnitConverter;
+import github.resources.img.core.utils.UnitConverter;
 
 import java.util.function.Function;
 

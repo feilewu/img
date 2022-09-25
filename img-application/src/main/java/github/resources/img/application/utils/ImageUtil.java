@@ -1,10 +1,10 @@
 package github.resources.img.application.utils;
 
-import github.resources.img.application.configuration.ImageServiceConf;
+import github.resources.img.application.configuration.DefaultImageServiceConf;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import static github.resources.img.application.configuration.ImageServiceConf.SUPPORTED_SUFFIX;
+import static github.resources.img.application.configuration.DefaultImageServiceConf.SUPPORTED_SUFFIX;
 
 public class ImageUtil {
 
@@ -12,7 +12,7 @@ public class ImageUtil {
 
     }
 
-    public static boolean supportedImageType(MultipartFile file, ImageServiceConf conf){
+    public static boolean supportedImageType(MultipartFile file, DefaultImageServiceConf conf){
         String contentType = file.getContentType();
         if(StringUtils.hasText(contentType)&&contentType.startsWith("image/")){
             String suffix = contentType.substring(contentType.indexOf("/")+1);

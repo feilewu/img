@@ -10,4 +10,6 @@ public interface ImageManager {
 
     void save(ImageBo imageBo);
 
+    ImageBo get(String fileName);
+
 }

@@ -4,6 +4,6 @@ public interface Storage {
 
     void write(Image image);
 
-    Image read(String imgName);
+    Image read(Image image);
 
 }

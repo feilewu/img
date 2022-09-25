@@ -19,11 +19,6 @@
     <dependencies>
         <dependency>
             <groupId>github.resources</groupId>
-            <artifactId>img-auth</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>github.resources</groupId>
             <artifactId>img-manager</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -35,9 +30,14 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.mybatis.spring.boot</groupId>-->
+<!--            <artifactId>mybatis-spring-boot-starter</artifactId>-->
+<!--        </dependency>-->
         <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

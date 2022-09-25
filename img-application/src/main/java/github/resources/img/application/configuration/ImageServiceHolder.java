@@ -13,9 +13,9 @@ public class ImageServiceHolder implements ApplicationContextAware {
     @Getter
     private static ApplicationContext context;
 
-    private static ImageServiceConf conf;
+    private static DefaultImageServiceConf conf;
 
-    public static ImageServiceConf getImageServiceConf() {
+    public static DefaultImageServiceConf getImageServiceConf() {
         return conf;
     }
 
@@ -23,11 +23,11 @@ public class ImageServiceHolder implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         context = applicationContext;
-        final ImageServiceConf imageServiceConf = applicationContext.getBean(ImageServiceConf.class);
-        if (ObjectUtils.isEmpty(imageServiceConf)){
+        final DefaultImageServiceConf defaultImageServiceConf = applicationContext.getBean(DefaultImageServiceConf.class);
+        if (ObjectUtils.isEmpty(defaultImageServiceConf)){
             throw new IllegalStateException("can not get bean of ImageServiceConf");
         }
-        conf = imageServiceConf;
+        conf = defaultImageServiceConf;
 //        final SecurityManager securityManager = applicationContext.getBean(SecurityManager.class);
 //        if (ObjectUtils.isEmpty(securityManager)){
 //            throw new IllegalStateException("can not get bean of SecurityManager");
