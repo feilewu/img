@@ -1,4 +1,4 @@
-package github.resources.img.manager.bo;
+package github.resources.img.core.model.bo;
 
 public class ImageBo {
 

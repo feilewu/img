@@ -1,4 +1,4 @@
-package github.resources.img.application.model.dto;
+package github.resources.img.core.model.dto;
 
 import lombok.Data;
 

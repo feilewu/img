@@ -4,7 +4,7 @@ import github.resources.img.application.configuration.ImageServiceHolder;
 import github.resources.img.application.service.ImgService;
 import github.resources.img.application.utils.ResponseUtil;
 import github.resources.img.application.utils.WebUtil;
-import github.resources.img.manager.bo.ImageBo;
+import github.resources.img.core.model.bo.ImageBo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +44,7 @@ public class ImgController {
             WebUtil.replyJson(response, ResponseUtil.fail("unsupported uri, the suffix "+suffix+" is not supported"));
         }
         String fileName = uri.substring(uri.lastIndexOf("/")+1);
-        final ImageBo imageBo = imgService.readImg(fileName);
+        final ImageBo imageBo = imgService.getImg(fileName);
         reply(imageBo,response);
     }
 

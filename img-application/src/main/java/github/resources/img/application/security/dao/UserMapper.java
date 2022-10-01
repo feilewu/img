@@ -1,7 +1,7 @@
 package github.resources.img.application.security.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import github.resources.img.application.model.entity.UserEntity;
+import github.resources.img.core.model.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

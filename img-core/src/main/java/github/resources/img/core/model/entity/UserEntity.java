@@ -1,4 +1,4 @@
-package github.resources.img.application.model.entity;
+package github.resources.img.core.model.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

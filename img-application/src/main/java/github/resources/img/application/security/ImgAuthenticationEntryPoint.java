@@ -1,7 +1,7 @@
 package github.resources.img.application.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import github.resources.img.application.model.dto.Response;
+import github.resources.img.core.model.dto.Response;
 import github.resources.img.application.utils.ResponseUtil;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

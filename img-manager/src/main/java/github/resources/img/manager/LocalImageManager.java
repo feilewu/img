@@ -2,7 +2,7 @@ package github.resources.img.manager;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import github.resources.img.core.configuration.ImageServiceConf;
-import github.resources.img.manager.bo.ImageBo;
+import github.resources.img.core.model.bo.ImageBo;
 import github.resources.img.storage.*;
 import github.resources.img.storage.dao.ImageMetaMapper;
 import github.resources.img.storage.dao.LocalImageMapper;

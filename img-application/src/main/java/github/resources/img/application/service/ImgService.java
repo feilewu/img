@@ -1,13 +1,9 @@
 package github.resources.img.application.service;
 
-import github.resources.img.application.model.dto.Response;
-import github.resources.img.manager.bo.ImageBo;
+import github.resources.img.core.model.dto.Response;
+import github.resources.img.core.model.bo.ImageBo;
 
 public interface ImgService {
-
-    Response upload(ImageBo imageBo);
-
-    ImageBo readImg(String fileName);
 
     Response saveImage(ImageBo imageBo);
 

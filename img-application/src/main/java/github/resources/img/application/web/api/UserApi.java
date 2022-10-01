@@ -1,7 +1,7 @@
 package github.resources.img.application.web.api;
 
-import github.resources.img.application.model.bo.UserBo;
-import github.resources.img.application.model.dto.Response;
+import github.resources.img.core.model.bo.UserBo;
+import github.resources.img.core.model.dto.Response;
 import github.resources.img.application.security.token.TokenManager;
 import github.resources.img.application.service.UserService;
 import github.resources.img.application.utils.CommonUtil;

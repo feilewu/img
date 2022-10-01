@@ -1,7 +1,7 @@
 package github.resources.img.application.utils;
 
 import github.resources.img.application.configuration.ImageServiceHolder;
-import github.resources.img.manager.bo.ImageBo;
+import github.resources.img.core.model.bo.ImageBo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 

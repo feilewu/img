@@ -1,6 +1,6 @@
 package github.resources.img.application.web.advice;
 
-import github.resources.img.application.model.dto.Response;
+import github.resources.img.core.model.dto.Response;
 import github.resources.img.application.utils.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
