@@ -21,6 +21,9 @@ logging:
   level:
     org.springframework.web.servlet: info
     github.resources: info
+    org:
+      springframework:
+        security: INFO
 
 mybatis:
   type-aliases-package: github.resources.img.*.entity

@@ -11,15 +11,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import static github.resources.img.application.configuration.DefaultImageServiceConf.DELETE_LOCAL_STORAGE_PATH_WHEN_START;
 import static github.resources.img.application.configuration.DefaultImageServiceConf.LOCAL_STORAGE_PATH;
 
 @SpringBootApplication(scanBasePackages = {"github.resources.img"})
-@MapperScan(basePackages = {"github.resources.img.application.web.dao","github.resources.img.*.dao"})
+@MapperScan(basePackages = { "github.resources.img.application.security.dao"
+        ,"github.resources.img.*.dao"})
 @EnableScheduling
 @EnableWebMvc
+@EnableWebSecurity
 @Slf4j
 public class App implements ApplicationRunner {
 

@@ -2,6 +2,7 @@ package github.resources.img.application.web.api;
 
 import github.resources.img.application.model.bo.UserBo;
 import github.resources.img.application.model.dto.Response;
+import github.resources.img.application.security.token.TokenManager;
 import github.resources.img.application.service.UserService;
 import github.resources.img.application.utils.CommonUtil;
 import github.resources.img.application.utils.ResponseUtil;
@@ -18,9 +19,13 @@ public class UserApi {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TokenManager tokenManager;
+
     @PostMapping("/login")
     public Response login(@RequestParam("name") String name, @RequestParam("password") String password){
-        return ResponseUtil.ok();
+        userService.authUser(name,password);
+        return ResponseUtil.ok(tokenManager.generateToken(name));
     }
 
     @PostMapping ("/register")

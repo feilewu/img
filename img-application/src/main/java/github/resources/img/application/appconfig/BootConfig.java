@@ -28,11 +28,11 @@ public class BootConfig {
      * 关闭tomcat的session管理
      * @return
      */
-    @Bean
-    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> sessionManagerCustomizer() {
-        return server -> server.addContextCustomizers(context -> context.setManager(new SimpleSessionManager()));
-    }
-    
+//    @Bean
+//    public WebServerFactoryCustomizer<TomcatServletWebServerFactory> sessionManagerCustomizer() {
+//        return server -> server.addContextCustomizers(context -> context.setManager(new SimpleSessionManager()));
+//    }
+
     @Bean
     public StorageManger storageManger(){
         return new DefaultStorageManger(imgMapper);

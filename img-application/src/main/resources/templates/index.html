@@ -52,6 +52,7 @@
         upload.render({
             elem: '#uploadImage'
             ,url: '/site/img/upload' //改成您自己的上传接口
+            //,url: 'api/img'
             ,done: function(resp){
                 if(resp.success===true){
                     layer.msg('上传成功');
