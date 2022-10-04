@@ -54,7 +54,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .sessionManagement()
                 // 因为使用了JWT，所以这里不管理Session
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .cors();
         http.addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }

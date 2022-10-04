@@ -6,6 +6,7 @@ import github.resources.img.application.security.token.TokenManager;
 import github.resources.img.application.service.UserService;
 import github.resources.img.application.utils.CommonUtil;
 import github.resources.img.application.utils.ResponseUtil;
+import github.resources.img.core.model.entity.UserEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +24,9 @@ public class UserApi {
     private TokenManager tokenManager;
 
     @PostMapping("/login")
-    public Response login(@RequestParam("name") String name, @RequestParam("password") String password){
-        userService.authUser(name,password);
-        return ResponseUtil.ok(tokenManager.generateToken(name));
+    public Response login(@RequestBody UserEntity userEntity){
+        userService.authUser(userEntity.getName(),userEntity.getPassword());
+        return ResponseUtil.ok(tokenManager.generateToken(userEntity.getName()));
     }
 
     @PostMapping ("/register")
