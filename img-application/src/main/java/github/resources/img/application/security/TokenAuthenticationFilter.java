@@ -1,5 +1,7 @@
 package github.resources.img.application.security;
 
+import github.resources.img.application.configuration.ContextHolder;
+import github.resources.img.application.configuration.UserContext;
 import github.resources.img.application.security.token.TokenManager;
 import github.resources.img.application.utils.WebUtil;
 import github.resources.img.core.model.dto.Response;
@@ -41,9 +43,12 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token= getAuthorization(request);
         final Response checkTokenResp = tokenManager.checkToken(token);
+        UserContext userContext = ContextHolder.getInstance().getContext();
+        userContext.clear();
         if(checkTokenResp.isSuccess()){
             final UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(checkTokenResp.getObj(), null, null);
             SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            userContext.setUserId((String) checkTokenResp.getObj());
             filterChain.doFilter(request,response);
         }else {
             WebUtil.replyJson(response,checkTokenResp);

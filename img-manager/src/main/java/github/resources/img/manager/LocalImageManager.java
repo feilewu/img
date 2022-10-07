@@ -1,8 +1,11 @@
 package github.resources.img.manager;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import github.resources.img.core.Page;
 import github.resources.img.core.configuration.ImageServiceConf;
 import github.resources.img.core.model.bo.ImageBo;
+import github.resources.img.core.model.vo.ImageVo;
 import github.resources.img.storage.*;
 import github.resources.img.storage.dao.ImageMetaMapper;
 import github.resources.img.storage.dao.LocalImageMapper;
@@ -12,7 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -83,6 +89,18 @@ public class LocalImageManager implements ImageManager, Storage {
         return imageBo;
     }
 
+    @Override
+    public Page<ImageVo> getPage(long current, long size, String owner, String host) {
+        QueryWrapper<ImageMetaEntity> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("create_id",owner);
+        queryWrapper.orderByDesc("create_time");
+        com.baomidou.mybatisplus.extension.plugins.pagination.Page<ImageMetaEntity> dataPage = new com.baomidou.mybatisplus.extension.plugins.pagination.Page<>();
+        dataPage.setCurrent(current);
+        dataPage.setSize(size);
+        final com.baomidou.mybatisplus.extension.plugins.pagination.Page<ImageMetaEntity> entityPage = imageMetaMapper.selectPage(dataPage, queryWrapper);
+        return buildPage(entityPage, host);
+    }
+
     private LocalImageEntity createLocalImageEntity(ImageBo imageBo){
         LocalImageEntity localImageEntity = new LocalImageEntity();
         localImageEntity.setImgName(imageBo.getName());
@@ -107,6 +125,22 @@ public class LocalImageManager implements ImageManager, Storage {
         return localImage;
     }
 
+    private Page<ImageVo> buildPage(com.baomidou.mybatisplus.extension.plugins.pagination.Page<ImageMetaEntity> entityPage, String host){
+        List<ImageVo> imageVoList = new ArrayList<>();
+        entityPage.getRecords().forEach(imageMetaEntity -> {
+            ImageVo imageVo = new ImageVo();
+            imageVo.setOwner(String.valueOf(imageMetaEntity.getCreateId()));
+            imageVo.setUri(host+"/img/"+imageMetaEntity.getImgName()+"."+imageMetaEntity.getSuffix());
+            imageVo.setCreateTime(imageMetaEntity.getCreateTime());
+            imageVoList.add(imageVo);
+        });
+        Page<ImageVo> imageVoPage = new Page<>();
+        imageVoPage.setRecords(imageVoList);
+        imageVoPage.setCurrent(entityPage.getCurrent());
+        imageVoPage.setTotal(entityPage.getTotal());
+        imageVoPage.setSize(entityPage.getSize());
+        return imageVoPage;
+    }
 
 
 

@@ -1,6 +1,8 @@
 package github.resources.img.manager;
 
+import github.resources.img.core.Page;
 import github.resources.img.core.model.bo.ImageBo;
+import github.resources.img.core.model.vo.ImageVo;
 
 /**
  * @author pfxuchn@gmail.com
@@ -11,5 +13,7 @@ public interface ImageManager {
     void save(ImageBo imageBo);
 
     ImageBo get(String fileName);
+
+    Page<ImageVo> getPage(long current,long size,String owner,String host);
 
 }

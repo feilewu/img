@@ -65,7 +65,7 @@ public class WebUtil {
         return null;
     }
 
-    protected static String getTokenFromHeader(HttpServletRequest request){
+    public static String getTokenFromHeader(HttpServletRequest request){
         return request.getHeader("token");
     }
 

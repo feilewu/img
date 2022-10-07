@@ -9,4 +9,6 @@ public interface ImgService {
 
     ImageBo getImg(String fileName);
 
+    Response selectPage(long current, long size);
+
 }

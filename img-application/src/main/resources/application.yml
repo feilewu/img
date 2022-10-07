@@ -25,6 +25,9 @@ logging:
       springframework:
         security: INFO
 
-mybatis:
-  type-aliases-package: github.resources.img.*.entity
+mybatis-plus:
   mapper-locations: classpath*:mapper/**/*Mapper.xml
+
+image:
+  service:
+    host: http://localhost:9527
