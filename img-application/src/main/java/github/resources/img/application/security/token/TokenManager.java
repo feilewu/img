@@ -2,6 +2,9 @@ package github.resources.img.application.security.token;
 
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.json.JSONUtil;
+import github.resources.img.application.utils.ResponseUtil;
+import github.resources.img.core.ResponseStatus;
+import github.resources.img.core.model.dto.Response;
 import org.springframework.stereotype.Component;
 
 import java.util.Base64;
@@ -38,17 +41,21 @@ public class TokenManager {
         return base64+"_"+getSignature(base64);
     }
 
-    public String checkToken(String token) {
+    public Response checkToken(String token) {
+
         if(CharSequenceUtil.hasEmpty(token)){
-            throw new IllegalArgumentException("token is empty");
+            return ResponseUtil.fail(String.valueOf(ResponseStatus.TOKEN_ILLEGAL.getCode()),
+                    ResponseStatus.TOKEN_ILLEGAL.getMessage());
         }
         String [] tokenItems = token.split("_");
         if(tokenItems.length!=2){
-            throw new IllegalArgumentException("token format error");
+            return ResponseUtil.fail(String.valueOf(ResponseStatus.TOKEN_ILLEGAL.getCode()),
+                    ResponseStatus.TOKEN_ILLEGAL.getMessage());
         }
         boolean equals = getSignature(tokenItems[0]).equals(tokenItems[1]);
         if(!equals){
-            throw new IllegalArgumentException("token illegal");
+            return ResponseUtil.fail(String.valueOf(ResponseStatus.TOKEN_ILLEGAL.getCode()),
+                    ResponseStatus.TOKEN_ILLEGAL.getMessage());
         }
         byte[] decode = Base64.getDecoder().decode(tokenItems[0].getBytes());
         String tokenJson = new String(decode);
@@ -57,9 +64,10 @@ public class TokenManager {
         long nowTimestamp = new Date().getTime();
         long expireTime = tokenBean.getExpireTime();
         if((nowTimestamp-timestamp)> expireTime){
-            throw new IllegalArgumentException("token expired");
+            return ResponseUtil.fail(String.valueOf(ResponseStatus.TOKEN_EXPIRE.getCode()),
+                    ResponseStatus.TOKEN_EXPIRE.getMessage());
         }
-        return token;
+        return ResponseUtil.ok(tokenBean.getId());
     }
 
 
