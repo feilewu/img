@@ -24,8 +24,10 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 <!--        <img.version>2.1.0</img.version>-->
         <guava.version>30.0-jre</guava.version>
+        <spring-boot.version>2.5.2</spring-boot.version>
     </properties>
 
     <dependencyManagement>
@@ -33,7 +35,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.5.2</version>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -117,8 +119,5 @@
 
         </dependencies>
     </dependencyManagement>
-
-
-
 
 </project>
